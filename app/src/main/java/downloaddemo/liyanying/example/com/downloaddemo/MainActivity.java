@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onError(int errorCode) {
 
+                Toast.makeText(context,"错误" ,Toast.LENGTH_SHORT ).show();
             }
         };
         downloadManager = DownloadManager.getInstance(downLoadPath360, filePathTo, "测试现在22", downloadListner);
@@ -164,11 +166,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.addbddata:
                 down_id++;
-                DownLoadInfo downLoadInfo = new DownLoadInfo(null,"223", String.valueOf(down_id), "filename", 6516156L, 254653L, "path");
+                String ceshi="path";
+                DownLoadInfo downLoadInfo = new DownLoadInfo(null,"223", String.valueOf(down_id), "filename", 6516156L, 254653L, ceshi);
                 dbManger.insert(downLoadInfo);
                 break;
             case R.id.deleteData:
-                dbManger.deleteDataById("3");
+//                dbManger.deleteDataById("3");
+                dbManger.deleteDataByClassId("223");
                 break;
             case R.id.changeData:
                 dbManger.updateDataById("1", null, 0L, 0L, null);

@@ -28,6 +28,7 @@ public class DbManger {
 
     /**
      * 删除数据
+     *
      * @param downLoadInfo
      */
     public void delete(DownLoadInfo downLoadInfo) {
@@ -36,6 +37,7 @@ public class DbManger {
 
     /**
      * 根据down_ID删除数据
+     *
      * @param down_ID
      */
     public void deleteDataById(String down_ID) {
@@ -48,7 +50,6 @@ public class DbManger {
 
     /**
      * 根据ClassId删除数据
-     * @param ClassId
      */
     public void deleteDataByClassId(String ClassId) {
         List<DownLoadInfo> listDownLoadInfo = queryDataByclassId(ClassId);
@@ -64,9 +65,8 @@ public class DbManger {
     public void updateDataById(String downId, String filename, Long totalSize,
                                Long currentSize, String path) {
         List<DownLoadInfo> listDownLoadInfo = queryDataBydownId(downId);
-//        DownLoadInfo findDownInfo = downLoadInfoDao.queryBuilder().where(DownLoadInfoDao.Properties.Id.eq(downId)).build().unique();
-        for (int i=0;i<listDownLoadInfo.size();i++){
-            DownLoadInfo findDownInfo=listDownLoadInfo.get(i);
+        for (int i = 0; i < listDownLoadInfo.size(); i++) {
+            DownLoadInfo findDownInfo = listDownLoadInfo.get(i);
             if (findDownInfo != null) {
                 if (filename != null) {
                     findDownInfo.setFilename(filename);
@@ -89,8 +89,6 @@ public class DbManger {
 
     /**
      * 根据down_ID查询数据
-     *
-     * @param down_ID 下载id
      */
     public List<DownLoadInfo> queryDataBydownId(String down_ID) {
         QueryBuilder qb = downLoadInfoDao.queryBuilder();
@@ -101,8 +99,6 @@ public class DbManger {
 
     /**
      * 根据down_ID查询数据
-     *
-     * @param classId
      */
     public List<DownLoadInfo> queryDataByclassId(String classId) {
         QueryBuilder qb = downLoadInfoDao.queryBuilder();

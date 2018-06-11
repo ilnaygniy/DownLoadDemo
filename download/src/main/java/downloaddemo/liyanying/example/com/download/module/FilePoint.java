@@ -1,14 +1,8 @@
 package downloaddemo.liyanying.example.com.download.module;
 
 /**
-
  * 目标文件
-
- * Created by Cheny on 2017/05/03.
-
  */
-
-
 
 public class FilePoint {
 

@@ -19,11 +19,11 @@ public class HttpUtil {
 
     private static HttpUtil mInstance;
 
-    private final static long CONNECT_TIMEOUT = 60;//超时时间，秒
+    private final static long CONNECT_TIMEOUT = 10;//超时时间，秒
 
-    private final static long READ_TIMEOUT = 60;//读取时间，秒
+    private final static long READ_TIMEOUT = 10;//读取时间，秒
 
-    private final static long WRITE_TIMEOUT = 60;//写入时间，秒
+    private final static long WRITE_TIMEOUT = 25;//写入时间，秒
 
     /**
      * @param url        下载链接
