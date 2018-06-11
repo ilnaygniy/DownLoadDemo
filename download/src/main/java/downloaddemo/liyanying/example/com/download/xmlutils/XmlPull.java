@@ -22,6 +22,12 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import downloaddemo.liyanying.example.com.download.listners.ParserXMLListener;
 
+import  downloaddemo.liyanying.example.com.download.module.ErrorCode;
+
+import static downloaddemo.liyanying.example.com.download.module.ErrorCode.XMLPULLIOERROR;
+import static downloaddemo.liyanying.example.com.download.module.ErrorCode.XMLPULLPARSERERROR;
+
+
 public class XmlPull {
 
     private LinkedList<Map> linkedList = new LinkedList<>();
@@ -171,8 +177,6 @@ public class XmlPull {
 
     }
 
-    public static int XMLPULLPARSERERROR=-1;
-    public static int XMLPULLIOERROR=-2;
     public void parserXMLThread(ParserXMLListener listener){
         parserXMLListener=listener;
         cachedThreadPool.execute(new Runnable() {

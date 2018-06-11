@@ -81,7 +81,6 @@ public class DownloadManager {
         if (TextUtils.isEmpty(fileName)) {
             fileName = getFileName(urlPath);
         }
-
         downloadThread=new DownloadThread(new FilePoint(urlPath, filePath, fileName), l);
     }
 

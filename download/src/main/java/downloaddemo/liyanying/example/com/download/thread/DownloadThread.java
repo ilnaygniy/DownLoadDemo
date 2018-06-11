@@ -16,12 +16,13 @@ import downloaddemo.liyanying.example.com.download.utils.HttpUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 
+import static downloaddemo.liyanying.example.com.download.module.ErrorCode.DOWNINTERRUPT;
+
 public class DownloadThread extends Handler {
 
     private FilePoint mPoint;
     private long mFileLength;//文件大小
     private boolean isDownloading = false;//是否正在下载
-
     private HttpUtil mHttpUtil;//http网络通信工具
     private long mProgress;//下载进度
     private File cacheFile;//临时缓存文件
@@ -34,7 +35,6 @@ public class DownloadThread extends Handler {
     private final int MSG_CANCEL = 4;//取消下载
     private DownloadListner mListner;//下载回调监听
 
-    private static int DOWNINTERRUPT = -1;//下载中断
 
     public DownloadThread(FilePoint point, DownloadListner l) {
         this.mPoint = point;
@@ -45,7 +45,6 @@ public class DownloadThread extends Handler {
     /**
      * 开始下载
      */
-
     public synchronized void start() {
         try {
             if (isDownloading) {
@@ -99,7 +98,6 @@ public class DownloadThread extends Handler {
      * @param endIndex 下载结束位置
      * @throws IOException
      */
-
     public void download(final long endIndex) throws IOException {
 
         long newStartIndex = 0L;
@@ -171,7 +169,6 @@ public class DownloadThread extends Handler {
                         mListner.onError(DOWNINTERRUPT);
                     }
                 }
-
             }
 
             @Override
@@ -184,11 +181,6 @@ public class DownloadThread extends Handler {
         });
     }
 
-    /**
-     * 轮回消息回调
-     *
-     * @param msg
-     */
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
@@ -203,9 +195,7 @@ public class DownloadThread extends Handler {
                 if (mListner != null) {
                     mListner.onCurrentSize(mProgress);
                 }
-
                 break;
-
             case MSG_PAUSE://暂停
                 resetStutus();
                 if (mListner != null) {
@@ -222,10 +212,8 @@ public class DownloadThread extends Handler {
                 break;
 
             case MSG_CANCEL://取消
-
                 resetStutus();
                 mProgress = 0;
-//                mListner.onCancel();
                 break;
 
             default:
@@ -235,14 +223,8 @@ public class DownloadThread extends Handler {
 
     }
 
-    /**
-     * 发送消息到轮回器
-     *
-     * @param what
-     */
-
     private void sendMessage(int what) {
-        //发送暂停消息
+
         Message message = new Message();
         message.what = what;
         sendMessage(message);
@@ -287,7 +269,6 @@ public class DownloadThread extends Handler {
     /**
      * 取消
      */
-
     public void cancel() {
         cancel = true;
         cleanFile(mTmpFile);
@@ -295,7 +276,6 @@ public class DownloadThread extends Handler {
             if (null != mListner) {
                 cleanFile(cacheFile);
                 resetStutus();
-//                mListner.onCancel();
             }
         }
     }
