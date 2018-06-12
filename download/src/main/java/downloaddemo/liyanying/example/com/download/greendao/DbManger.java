@@ -40,7 +40,7 @@ public class DbManger {
      *
      * @param down_ID
      */
-    public void deleteDataById(String down_ID) {
+    public void deleteDataByDownId(String down_ID) {
         List<DownLoadInfo> listDownLoadInfo = queryDataBydownId(down_ID);
         for (int i = 0; i < listDownLoadInfo.size(); i++) {
             DownLoadInfo downLoadInfo = listDownLoadInfo.get(i);

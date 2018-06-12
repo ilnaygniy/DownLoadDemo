@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dbManger.insert(downLoadInfo);
                 break;
             case R.id.deleteData:
-//                dbManger.deleteDataById("3");
+//                dbManger.deleteDataByDownId("3");
                 dbManger.deleteDataByClassId("223");
                 break;
             case R.id.changeData:
